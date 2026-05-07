@@ -1,0 +1,59 @@
+@baseUrl = http://localhost:3000/api/v1
+
+@favoriteId = 
+
+### Obtener frase aleatoria
+GET {{baseUrl}}/quotes/random
+Content-Type: application/json
+
+### Agregar primer favorito
+POST {{baseUrl}}/quotes/favorites
+Content-Type: application/json
+
+{
+  "quote": "Talk is cheap. Show me the code.",
+  "author": "Linus Torvalds"
+}
+
+### Agregar segundo favorito
+POST {{baseUrl}}/quotes/favorites
+Content-Type: application/json
+
+{
+  "quote": "La educación es el arma más poderosa que puedes usar para cambiar el mundo.",
+  "author": "Nelson Mandela"
+}
+
+### Error: falta quote
+POST {{baseUrl}}/quotes/favorites
+Content-Type: application/json
+
+{
+  "author": "Me olvide de poner la frase"
+}
+
+### Error: falta author
+POST {{baseUrl}}/quotes/favorites
+Content-Type: application/json
+
+{
+  "quote": "Esta frase no tiene autor guardado"
+}
+
+### Error: body vacio
+POST {{baseUrl}}/quotes/favorites
+Content-Type: application/json
+
+{}
+
+### Listar todos los favoritos
+GET {{baseUrl}}/quotes/favorites
+Content-Type: application/json
+
+### Eliminar favorito por ID
+DELETE {{baseUrl}}/quotes/favorites/{{favoriteId}}
+Content-Type: application/json
+
+### Error: borrar ID inexistente
+DELETE {{baseUrl}}/quotes/favorites/123456789
+Content-Type: application/json
